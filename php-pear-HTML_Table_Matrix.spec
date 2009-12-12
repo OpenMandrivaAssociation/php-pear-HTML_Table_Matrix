@@ -2,14 +2,14 @@
 %define		_subclass	Table
 %define		upstream_name	%{_class}_%{_subclass}_Matrix
 
-Summary:	Autofill a table with data
 Name:		php-pear-%{upstream_name}
 Version:	1.0.10
-Release:	%mkrel 1
+Release:	%mkrel 2
+Summary:	Autofill a table with data
 License:	PHP License
 Group:		Development/PHP
 URL:		http://pear.php.net/package/HTML_Table_Matrix/
-Source0:	http://pear.php.net/get/%{upstream_name}-%{version}.tgz
+Source0:	http://download.pear.php.net/package/%{upstream_name}-%{version}.tgz
 Requires(post): php-pear
 Requires(preun): php-pear
 Requires:	php-pear
@@ -56,18 +56,22 @@ rm -rf %{buildroot}%{_datadir}/pear/examples
 install -d %{buildroot}%{_datadir}/pear/packages
 install -m 644 %{upstream_name}.xml %{buildroot}%{_datadir}/pear/packages
 
+%clean
+rm -rf %{buildroot}
+
 %post
+%if %mdkversion < 201000
 pear install --nodeps --soft --force --register-only \
     %{_datadir}/pear/packages/%{upstream_name}.xml >/dev/null || :
+%endif
 
 %preun
+%if %mdkversion < 201000
 if [ "$1" -eq "0" ]; then
     pear uninstall --nodeps --ignore-errors --register-only \
         %{pear_name} >/dev/null || :
 fi
-
-%clean
-rm -rf %{buildroot}
+%endif
 
 %files
 %defattr(-,root,root)
