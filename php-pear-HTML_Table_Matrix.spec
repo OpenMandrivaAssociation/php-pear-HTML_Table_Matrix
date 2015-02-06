@@ -4,7 +4,7 @@
 
 Name:		php-pear-%{upstream_name}
 Version:	1.0.10
-Release:	6
+Release:	7
 Summary:	Autofill a table with data
 License:	PHP License
 Group:		Development/PHP
