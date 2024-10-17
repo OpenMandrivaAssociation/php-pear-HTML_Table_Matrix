@@ -8,7 +8,7 @@ Release:	7
 Summary:	Autofill a table with data
 License:	PHP License
 Group:		Development/PHP
-URL:		http://pear.php.net/package/HTML_Table_Matrix/
+URL:		https://pear.php.net/package/HTML_Table_Matrix/
 Source0:	http://download.pear.php.net/package/%{upstream_name}-%{version}.tgz
 Requires(post): php-pear
 Requires(preun): php-pear
